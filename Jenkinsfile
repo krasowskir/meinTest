@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage("Checkout"){
             steps {
@@ -8,12 +8,13 @@ pipeline {
             }
         }
         stage("Compile"){
-            steps {
+            withMaven(maven: 'maven') {
                 sh "mvn clean compile"
             }
+
         }
         stage("Unit test"){
-            steps{
+            withMaven(maven: 'maven') {
                 sh "mvn test install"
             }
         }
