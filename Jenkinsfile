@@ -8,15 +8,21 @@ pipeline {
             }
         }
         stage("Compile"){
-            withMaven(maven: 'maven') {
-                sh "mvn clean compile"
+            steps {
+                withMaven(maven: 'maven') {
+                    sh "mvn clean compile"
+                }
             }
+
 
         }
         stage("Unit test"){
-            withMaven(maven: 'maven') {
-                sh "mvn test install"
+            steps {
+                withMaven(maven: 'maven') {
+                    sh "mvn test install"
+                }
             }
+
         }
         stage("Final steps"){
             steps{
