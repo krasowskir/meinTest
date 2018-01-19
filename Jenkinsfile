@@ -4,6 +4,9 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
+    tools {
+        maven 'apache-maven-3.3.9'
+    }
     stages {
         stage("Checkout"){
             steps {
@@ -12,18 +15,20 @@ pipeline {
         }
         stage("Compile"){
             steps {
-                withMaven(maven: 'maven') {
+                sh "mvn clean compile"
+                /*withMaven(maven: 'maven') {
                     sh "mvn clean compile"
-                }
+                }*/
             }
 
 
         }
         stage("Unit test"){
             steps {
-                withMaven(maven: 'maven') {
+                sh "mvn test install"
+                /*withMaven(maven: 'maven') {
                     sh "mvn test install"
-                }
+                }*/
             }
 
         }
