@@ -16,5 +16,10 @@ pipeline {
                 sh "mvn test install"
             }
         }
+        stage("Final steps"){
+            steps{
+                echo "neue Änderung in Jenkinsfile"
+            }
+        }
     }
 }
